@@ -40,7 +40,7 @@ public class OptionController implements OptionsDAO {
     @Override
     @DeleteMapping("/api/v1/options/{id}")
     public void deleteOption(@PathVariable("id") Integer id) {
-        template.update("delete from options where poll_id = ?", id);
+        template.update("delete from options where options_id = ?", id);
     }
 
     @CrossOrigin
