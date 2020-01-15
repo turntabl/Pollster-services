@@ -23,7 +23,7 @@ public class OptionController implements OptionsDAO {
     @Override
     @PostMapping("/api/v1/options")
     public void addNewOptions(@RequestBody OptionTO option) {
-        template.update("insert into options (options_id, poll_id, content) values(?,?,?)", option.getOptions_id(), option.getPoll_id(), option.getContent());
+        template.update("insert into options (poll_id, content) values(?,?)",option.getPoll_id(), option.getContent());
 
     }
 
