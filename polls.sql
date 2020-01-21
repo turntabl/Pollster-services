@@ -23,7 +23,8 @@ CREATE TABLE options(
 
 CREATE TABLE responses(
     response_id integer primary key not null,
-    options_id integer references options(options_id) ON UPDATE CASCADE ON DELETE CASCADE
+    options_id integer references options(options_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    suggestions text
 );
 
 INSERT INTO creators("creator_id", "creator_email", "creator_name") VALUES(101, 'isaac@mail.com', 'Isaac Agyen');
@@ -41,14 +42,11 @@ INSERT INTO options("options_id", "poll_id", "content") VALUES(304, 202, 'Yes');
 INSERT INTO options("options_id", "poll_id", "content") VALUES(305, 202, 'No');
 INSERT INTO options("options_id", "poll_id", "content") VALUES(306, 202, 'Maybe');
 
-INSERT INTO responses("response_id", "options_id") VALUES(401, 301);
-INSERT INTO responses("response_id", "options_id") VALUES(402, 301);
-INSERT INTO responses("response_id", "options_id") VALUES(403, 302);
-INSERT INTO responses("response_id", "options_id") VALUES(404, 301);
-INSERT INTO responses("response_id", "options_id") VALUES(405, 303);
-INSERT INTO responses("response_id", "options_id") VALUES(406, 301);
-INSERT INTO responses("response_id", "options_id") VALUES(407, 301);
-
-
-
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(401, 301, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(402, 301, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(403, 302, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(404, 301, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(405, 303, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(406, 301, 'cool');
+INSERT INTO responses("response_id", "options_id", "suggestions") VALUES(407, 301, 'cool');
 

@@ -1,5 +1,8 @@
 package io.turntabl.Polls.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OptionTO {
     private int options_id;
     private int poll_id;
