@@ -51,4 +51,13 @@ public class OptionController implements OptionsDAO {
         return (OptionTO) template.queryForObject("select * from options where options_id = ?", new Object[]{id},
                 new BeanPropertyRowMapper(OptionTO.class));
     }
+
+    @CrossOrigin
+    @ApiOperation("Get options by poll id")
+    @Override
+    @GetMapping("/api/v1/options/polls/{id}")
+    public List<OptionTO> getOptionsByPollsId(@PathVariable("id") Integer id) {
+        return this.template.query("select * from options where poll_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(OptionTO.class));
+    }
 }
