@@ -22,7 +22,7 @@ public class PollController implements PollDAO {
     @Override
     @PostMapping("/api/v1/polls")
     public void addNewPoll(@RequestBody PollTO poll) {
-        template.update("insert into polls(creator_id, questions) values (?,?)", poll.getCreator_id(), poll.getQuestions());
+        template.update("insert into polls(poll_id, creator_id, questions) values (?,?,?)", poll.getPoll_id(), poll.getCreator_id(), poll.getQuestions());
     }
 
     @CrossOrigin
