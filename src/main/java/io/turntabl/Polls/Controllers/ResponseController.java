@@ -3,7 +3,6 @@ package io.turntabl.Polls.Controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntabl.Polls.dao.ResponseDAO;
-import io.turntabl.Polls.models.OptionTO;
 import io.turntabl.Polls.models.ResponseTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -23,7 +22,7 @@ public class ResponseController implements ResponseDAO {
     @Override
     @PostMapping("/api/v1/responses")
     public void addNewResponse(@RequestBody ResponseTO Response) {
-        template.update("insert into responses(response_id, poll_id, options_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOptions_id(), Response.getSuggestions());
+        template.update("insert into responses(response_id, poll_id, option_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOption_id(), Response.getSuggestions());
     }
 
 
