@@ -23,7 +23,7 @@ public class OptionController implements OptionsDAO {
     @Override
     @PostMapping("/api/v1/options")
     public void addNewOptions(@RequestBody OptionTO option) {
-        template.update("insert into options (options_id, poll_id, content) values(?,?,?)", option.getOptions_id(), option.getPoll_id(), option.getContent());
+        template.update("insert into options (option_id, poll_id, content) values(?,?,?)", option.getOption_id(), option.getPoll_id(), option.getContent());
 
     }
 
@@ -40,7 +40,7 @@ public class OptionController implements OptionsDAO {
     @Override
     @DeleteMapping("/api/v1/options/{id}")
     public void deleteOption(@PathVariable("id") String id) {
-        template.update("delete from options where options_id = ?", id);
+        template.update("delete from options where option_id = ?", id);
     }
 
     @CrossOrigin
@@ -48,7 +48,7 @@ public class OptionController implements OptionsDAO {
     @Override
     @GetMapping("/api/v1/options/{id}")
     public OptionTO getOptionById(@PathVariable("id") String id) {
-        return (OptionTO) template.queryForObject("select * from options where options_id = ?", new Object[]{id},
+        return (OptionTO) template.queryForObject("select * from options where option_id = ?", new Object[]{id},
                 new BeanPropertyRowMapper(OptionTO.class));
     }
 
