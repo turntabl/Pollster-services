@@ -52,9 +52,10 @@ public class ResponseTO {
     public String toString() {
         return "ResponseTO{" +
                 "response_id='" + response_id + '\'' +
-                ", options_id='" + option_id + '\'' +
+                ", option_id='" + option_id + '\'' +
                 ", poll_id='" + poll_id + '\'' +
                 ", suggestions='" + suggestions + '\'' +
                 '}';
     }
+
 }
