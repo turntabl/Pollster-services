@@ -24,11 +24,11 @@ public class ResponseTO {
         this.response_id = response_id;
     }
 
-    public String getOptions_id() {
+    public String getOption_id() {
         return option_id;
     }
 
-    public void setOptions_id(String option_id) {
+    public void setOption_id(String option_id) {
         this.option_id = option_id;
     }
 
@@ -52,9 +52,10 @@ public class ResponseTO {
     public String toString() {
         return "ResponseTO{" +
                 "response_id='" + response_id + '\'' +
-                ", options_id='" + option_id + '\'' +
+                ", option_id='" + option_id + '\'' +
                 ", poll_id='" + poll_id + '\'' +
                 ", suggestions='" + suggestions + '\'' +
                 '}';
     }
+
 }

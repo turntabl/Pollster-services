@@ -115,7 +115,7 @@ public class Controller implements DAO {
     @Override
     @PostMapping("/api/v1/responses")
     public void addNewResponse(@RequestBody ResponseTO Response) {
-        template.update("insert into responses(response_id, poll_id, option_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOptions_id(), Response.getSuggestions());
+        template.update("insert into responses(response_id, poll_id, option_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOption_id(), Response.getSuggestions());
     }
 
 
