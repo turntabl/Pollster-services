@@ -3,15 +3,15 @@ package io.turntabl.Polls.models;
 public class PollTO {
     private String poll_id;
     private String creator_id;
-    private String questions;
+    private String question;
 
     public PollTO() {
     }
 
-    public PollTO(String poll_id, String creator_id, String questions) {
+    public PollTO(String poll_id, String creator_id, String question) {
         this.poll_id = poll_id;
         this.creator_id = creator_id;
-        this.questions = questions;
+        this.question = question;
     }
 
     public String getPoll_id() { return poll_id; }
@@ -22,16 +22,16 @@ public class PollTO {
 
     public void setCreator_id(String creator_id) { this.creator_id = creator_id; }
 
-    public String getQuestions() { return questions; }
+    public String getQuestion() { return question; }
 
-    public void setQuestions(String questions) { this.questions = questions; }
+    public void setQuestion(String question) { this.question = question; }
 
     @Override
     public String toString() {
         return "PollTO{" +
                 "poll_id=" + poll_id +
                 ", creator_id=" + creator_id +
-                ", questions='" + questions + '\'' +
+                ", questions='" + question + '\'' +
                 '}';
     }
 }
