@@ -3,6 +3,7 @@ package io.turntabl.Polls.Controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntabl.Polls.dao.ResponseDAO;
+import io.turntabl.Polls.models.OptionTO;
 import io.turntabl.Polls.models.ResponseTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -22,7 +23,7 @@ public class ResponseController implements ResponseDAO {
     @Override
     @PostMapping("/api/v1/responses")
     public void addNewResponse(@RequestBody ResponseTO Response) {
-        template.update("insert into responses(response_id, options_id, suggestions) values (?,?,?)", Response.getResponse_id(), Response.getOptions_id(), Response.getSuggestions());
+        template.update("insert into responses(response_id, poll_id, options_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOptions_id(), Response.getSuggestions());
     }
 
 
@@ -49,6 +50,15 @@ public class ResponseController implements ResponseDAO {
     @GetMapping("/api/v1/responses/{id}")
     public ResponseTO viewResponseById(@PathVariable("id") String id) {
         return (ResponseTO) template.queryForObject("select * from responses where response_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(ResponseTO.class));
+    }
+
+    @CrossOrigin
+    @ApiOperation("Get response by poll id")
+    @Override
+    @GetMapping("/api/v1/response/polls/{id}")
+    public List<ResponseTO> getResponsesByPollsId(@PathVariable("id") String id) {
+        return this.template.query("select * from responses where poll_id = ?", new Object[]{id},
                 new BeanPropertyRowMapper<>(ResponseTO.class));
     }
 }
