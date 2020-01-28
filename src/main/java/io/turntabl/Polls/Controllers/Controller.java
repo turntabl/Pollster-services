@@ -30,11 +30,9 @@ public class Controller implements DAO {
     @ApiOperation("Add a Poll")
     @Override
     @PostMapping("/api/v1/polls")
-    public void addNewPoll(@RequestBody PollTO poll) {
+        public void addNewPoll(@RequestBody PollTO poll) {
         template.update("insert into polls(poll_id, creator_id, question) values (?,?,?)", poll.getPoll_id(), poll.getCreator_id(), poll.getQuestion());
     }
-
-
 
     @CrossOrigin
     @ApiOperation("Get all Polls")
@@ -44,13 +42,6 @@ public class Controller implements DAO {
         return this.template.query("select * from polls", new BeanPropertyRowMapper<PollTO>(PollTO.class));
     }
 
-    @CrossOrigin
-    @ApiOperation("Delete a Poll")
-    @Override
-    @DeleteMapping("/api/v1/polls/{id}")
-    public void deletePoll(@PathVariable("id") String id) {
-        template.update("delete from polls where poll_id = ?", id);
-    }
 
     @CrossOrigin
     @ApiOperation("Get Poll by ID")
@@ -61,8 +52,17 @@ public class Controller implements DAO {
                 new BeanPropertyRowMapper(PollTO.class));
     }
 
+@CrossOrigin
+@PostMapping("/api/v1/addNewPoll2")
+    public void addNewPoll2(@RequestBody PollTO poll) {
+        template.update("insert into polls(poll_id, question, creator_email, recipient_email) values(?,?,?,?)",  poll.getPoll_id(), poll.getQuestion(), "yaa@turntabl.io", poll.getRecipient_email());
+        for(OptionTO o : poll.getOptions()){
+            template.update("insert into options(option_id, poll_id, content) values(?,?,?)", o.getOption_id(), o.getPoll_id(), o.getContent());
+        }
+}
 
-//Options Controller
+
+        //Options Controller
     @CrossOrigin
     @ApiOperation("Add an Option")
     @Override
@@ -80,13 +80,7 @@ public class Controller implements DAO {
         return this.template.query("select * from options", new BeanPropertyRowMapper<OptionTO>(OptionTO.class));
     }
 
-    @CrossOrigin
-    @ApiOperation("Delete an Option")
-    @Override
-    @DeleteMapping("/api/v1/options/{id}")
-    public void deleteOption(@PathVariable("id") String id) {
-        template.update("delete from options where option_id = ?", id);
-    }
+
 
     @CrossOrigin
     @ApiOperation("Get an Option by ID")

@@ -11,12 +11,10 @@ public interface DAO {
 
     public void addNewOptions(OptionTO option);
     public List<OptionTO> getAllOptions();
-    public void deleteOption(String id);
     public OptionTO getOptionById(String id);
     public List<OptionTO> getOptionsByPollsId(String id);
 
     public void addNewPoll(PollTO poll);
-    public void deletePoll(String id);
     public List<PollTO> viewAllPolls();
     public PollTO viewPollById(String id);
 
@@ -31,5 +29,8 @@ public interface DAO {
     public void AddNewCreator(UserTO creator);
     public UserTO getCreatorById(String id);
     public void deleteCreator(String id);
+
+    public void addNewPoll2(PollTO poll);
+
 
 }
