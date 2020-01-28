@@ -7,7 +7,6 @@ import io.turntabl.Polls.dao.DAO;
 import io.turntabl.Polls.models.OptionTO;
 import io.turntabl.Polls.models.PollTO;
 import io.turntabl.Polls.models.ResponseTO;
-import io.turntabl.Polls.models.UserTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +30,7 @@ public class Controller implements DAO {
     @Override
     @PostMapping("/api/v1/polls")
         public void addNewPoll(@RequestBody PollTO poll) {
-        template.update("insert into polls(poll_id, creator_id, question) values (?,?,?)", poll.getPoll_id(), poll.getCreator_id(), poll.getQuestion());
+        template.update("insert into polls(poll_id, question) values (?,?)", poll.getPoll_id(),  poll.getQuestion());
     }
 
     @CrossOrigin
@@ -100,8 +99,6 @@ public class Controller implements DAO {
                 new BeanPropertyRowMapper<>(OptionTO.class));
     }
 
-    //
-
     // Response Controller
 
     @CrossOrigin
@@ -148,40 +145,5 @@ public class Controller implements DAO {
                 new BeanPropertyRowMapper<>(ResponseTO.class));
     }
 
-    //
 
-    //Creators Controller
-
-    @CrossOrigin
-    @ApiOperation("Get all Creators")
-    @Override
-    @GetMapping("/api/v1/creators")
-    public List<UserTO> getAllCreators() {
-        return this.template.query("select * from creators", new BeanPropertyRowMapper<UserTO>(UserTO.class));
-    }
-
-    @CrossOrigin
-    @ApiOperation("Add a Creator")
-    @Override
-    @PostMapping("/api/v1/creators")
-    public void AddNewCreator(UserTO creator) {
-        template.update("insert into creators (creator_id, creator_email, creator_name) values (?,?,?)", creator.getCreator_id(),creator.getCreator_email(), creator.getCreator_name());
-    }
-
-    @CrossOrigin
-    @ApiOperation("Get Creator by ID")
-    @Override
-    @GetMapping("/api/v1/creators/{id}")
-    public UserTO getCreatorById(@PathVariable("id") String id) {
-        return (UserTO)  template.queryForObject("select * from creators where creator_id = ?", new Object[]{id},
-                new BeanPropertyRowMapper(UserTO.class));
-    }
-
-    @CrossOrigin
-    @ApiOperation("Delete a Creator")
-    @Override
-    @DeleteMapping("/api/v1/creators/{id}")
-    public void deleteCreator(@PathVariable("id") String id) {
-        template.update("delete from creators where creator_id = ?", id);
-    }
 }

@@ -25,12 +25,7 @@ public interface DAO {
     public ResponseTO viewResponseById(String id);
     public List<ResponseTO> getResponsesByPollsId(String id);
 
-    public List<UserTO> getAllCreators();
-    public void AddNewCreator(UserTO creator);
-    public UserTO getCreatorById(String id);
-    public void deleteCreator(String id);
 
     public void addNewPoll2(PollTO poll);
-
 
 }
