@@ -17,7 +17,7 @@ CREATE TABLE options(
 );
 
 CREATE TABLE responses(
-    response_id varchar(100) primary key not null,
+    response_id serial primary key not null,
     poll_id varchar(100) references polls(poll_id) ON UPDATE CASCADE ON DELETE CASCADE,
     option_id varchar(100) references options(option_id) ON UPDATE CASCADE ON DELETE CASCADE
 
@@ -34,10 +34,10 @@ INSERT INTO options("option_id", "poll_id", "content") VALUES('304', '202', 'Yes
 INSERT INTO options("option_id", "poll_id", "content") VALUES('305', '202', 'No');
 INSERT INTO options("option_id", "poll_id", "content") VALUES('306', '202', 'Maybe');
 
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('401', '201', '301');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('402', '201', '301');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('403', '201', '302');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('404', '201', '301');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('405', '201', '303');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('406', '201', '301');
-INSERT INTO responses("response_id", "poll_id", "option_id") VALUES('407', '201', '301');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '302');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '303');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
+INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');

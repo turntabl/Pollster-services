@@ -54,7 +54,7 @@ public class Controller implements DAO {
 @CrossOrigin
 @PostMapping("/api/v1/addNewPoll2")
     public void addNewPoll2(@RequestBody PollTO poll) {
-        template.update("insert into polls(poll_id, question, creator_email, recipient_email) values(?,?,?,?)",  poll.getPoll_id(), poll.getQuestion(), "yaa@turntabl.io", poll.getRecipient_email());
+        template.update("insert into polls(poll_id, question, creator_email, recipient_email) values(?,?,?,?)",  poll.getPoll_id(), poll.getQuestion(), poll.getCreator_email(), poll.getRecipient_email());
         for(OptionTO o : poll.getOptions()){
             template.update("insert into options(option_id, poll_id, content) values(?,?,?)", o.getOption_id(), o.getPoll_id(), o.getContent());
         }
@@ -106,7 +106,7 @@ public class Controller implements DAO {
     @Override
     @PostMapping("/api/v1/responses")
     public void addNewResponse(@RequestBody ResponseTO Response) {
-        template.update("insert into responses(response_id, poll_id, option_id, suggestions) values (?,?,?,?)", Response.getResponse_id(), Response.getPoll_id(), Response.getOption_id(), Response.getSuggestions());
+        template.update("insert into responses(poll_id, option_id) values (?,?)", Response.getPoll_id(), Response.getOption_id());
     }
 
 
