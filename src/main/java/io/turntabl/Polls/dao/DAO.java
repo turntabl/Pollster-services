@@ -18,13 +18,11 @@ public interface DAO {
     public List<PollTO> viewAllPolls();
     public PollTO viewPollById(String id);
 
-
     public void addNewResponse(ResponseTO poll);
     public void deleteResponse(String id);
     public List<ResponseTO> viewAllResponse();
     public ResponseTO viewResponseById(String id);
     public List<ResponseTO> getResponsesByPollsId(String id);
-
 
     public void addNewPoll2(PollTO poll);
 

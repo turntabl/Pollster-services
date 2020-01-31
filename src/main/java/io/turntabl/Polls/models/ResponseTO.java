@@ -5,7 +5,6 @@ public class ResponseTO {
     private String option_id;
     private String poll_id;
 
-
     public ResponseTO() {
     }
 
@@ -39,7 +38,6 @@ public class ResponseTO {
     public void setPoll_id(String poll_id) {
         this.poll_id = poll_id;
     }
-
 
     @Override
     public String toString() {
