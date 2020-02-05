@@ -2,8 +2,6 @@ package io.turntabl.Polls.Controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.turntabl.Polls.models.OptionTO;
 
 import java.util.List;
