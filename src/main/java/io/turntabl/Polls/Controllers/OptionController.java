@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntabl.Polls.models.OptionTO;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -45,7 +47,7 @@ public class OptionController {
     public OptionTO getOptionById(@PathVariable("id") String id) {
         return (OptionTO) template.queryForObject(
                 "select * from options where option_id = ?",
-                new Object[] { id },
+                new Object[]{id},
                 new BeanPropertyRowMapper(OptionTO.class)
         );
     }
@@ -56,7 +58,7 @@ public class OptionController {
     public List<OptionTO> getOptionsByPollsId(@PathVariable("id") String id) {
         return this.template.query(
                 "select * from options where poll_id = ?",
-                new Object[] { id },
+                new Object[]{id},
                 new BeanPropertyRowMapper<>(OptionTO.class)
         );
     }

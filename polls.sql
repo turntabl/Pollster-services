@@ -10,32 +10,13 @@ CREATE TABLE polls(
 );
 
 CREATE TABLE options(
-    option_id varchar(100) primary key not null,
-    poll_id varchar(100) references polls(poll_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    content text
+   option_id varchar(100) primary key not null,
+   poll_id varchar(100) references polls(poll_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   content text
 );
 
 CREATE TABLE responses(
-    response_id serial primary key not null,
-    poll_id varchar(100) references polls(poll_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    option_id varchar(100) references options(option_id) ON UPDATE CASCADE ON DELETE CASCADE
-
+   response_id serial primary key not null,
+   poll_id varchar(100) references polls(poll_id) ON UPDATE CASCADE ON DELETE CASCADE,
+   option_id varchar(100) references options(option_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-INSERT INTO polls("poll_id", "question", "creator_email", "recipient_email") VALUES('201', 'Did you enjoy the call?', 'sam@turntabl.io', 'sam@turntabl.io' );
-INSERT INTO polls("poll_id","question", "creator_email", "recipient_email") VALUES('202','Will you like to do this again?', 'sam@turntabl.io', 'yaa.fordjour@turntabl.io');
-
-INSERT INTO options("option_id", "poll_id", "content") VALUES('301', '201', 'Yes');
-INSERT INTO options("option_id", "poll_id", "content") VALUES('302', '201', 'No');
-INSERT INTO options("option_id", "poll_id", "content") VALUES('303', '201', 'Maybe');
-INSERT INTO options("option_id", "poll_id", "content") VALUES('304', '202', 'Yes');
-INSERT INTO options("option_id", "poll_id", "content") VALUES('305', '202', 'No');
-INSERT INTO options("option_id", "poll_id", "content") VALUES('306', '202', 'Maybe');
-
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '302');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '303');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');
-INSERT INTO responses( "poll_id", "option_id") VALUES('201', '301');

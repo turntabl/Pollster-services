@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Api
@@ -42,7 +43,7 @@ public class ResponseController {
     public ResponseTO viewResponseById(@PathVariable("id") String id) {
         return (ResponseTO) template.queryForObject(
                 "select * from responses where response_id = ?",
-                new Object[] { id },
+                new Object[]{id},
                 new BeanPropertyRowMapper<>(ResponseTO.class)
         );
     }
@@ -53,7 +54,7 @@ public class ResponseController {
     public List<ResponseTO> getResponsesByPollsId(@PathVariable("id") String id) {
         return this.template.query(
                 "select * from responses where poll_id = ?",
-                new Object[] { id },
+                new Object[]{id},
                 new BeanPropertyRowMapper<>(ResponseTO.class)
         );
     }
