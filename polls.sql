@@ -1,13 +1,12 @@
-DROP TABLE if EXISTS creators cascade;
 DROP TABLE if EXISTS polls cascade;
 DROP TABLE if EXISTS options cascade;
 DROP TABLE if EXISTS responses cascade;
 
 CREATE TABLE polls(
    poll_id varchar(100) primary key not null,
-    question text not null,
-    creator_email varchar(50) not null,
-    recipient_email varchar(255) not null
+   question text not null,
+   creator_email varchar(50) not null,
+   recipient_email varchar(255) not null
 );
 
 CREATE TABLE options(
@@ -22,7 +21,6 @@ CREATE TABLE responses(
     option_id varchar(100) references options(option_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 );
-
 
 INSERT INTO polls("poll_id", "question", "creator_email", "recipient_email") VALUES('201', 'Did you enjoy the call?', 'sam@turntabl.io', 'sam@turntabl.io' );
 INSERT INTO polls("poll_id","question", "creator_email", "recipient_email") VALUES('202','Will you like to do this again?', 'sam@turntabl.io', 'yaa.fordjour@turntabl.io');
