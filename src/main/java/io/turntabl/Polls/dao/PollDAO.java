@@ -1,7 +1,6 @@
 package io.turntabl.Polls.dao;
 
 import io.turntabl.Polls.models.PollTO;
-
 import java.util.List;
 
 public interface PollDAO {
