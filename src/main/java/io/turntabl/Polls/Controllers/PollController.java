@@ -41,7 +41,7 @@ public class PollController {
     @GetMapping("/api/v1/polls")
     public List<PollTO> viewAllPolls() {
         return this.template.query(
-                "select * from polls",
+                "select poll_id, question, creator_email, recipient_email from polls",
                 new BeanPropertyRowMapper<PollTO>(PollTO.class)
         );
     }
@@ -51,7 +51,7 @@ public class PollController {
     @GetMapping("/api/v1/polls/{id}")
     public PollTO viewPollById(@PathVariable("id") String id) {
         return (PollTO) template.queryForObject(
-                "select * from polls where poll_id = ?",
+                "select poll_id, question, creator_email, recipient_email from polls where poll_id = ?",
                 new Object[]{id},
                 new BeanPropertyRowMapper(PollTO.class)
         );
