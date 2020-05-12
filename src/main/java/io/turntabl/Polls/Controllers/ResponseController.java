@@ -39,7 +39,7 @@ public class ResponseController {
     @CrossOrigin
     @ApiOperation("Get Response by ID")
     @GetMapping("/api/v1/responses/{id}")
-    public ResponseTO viewResponseById(@PathVariable("id") String id) {
+    public ResponseTO viewResponseById(@PathVariable("id") Integer id) {
         return this.template.queryForObject(
                 "select poll_id, response_id, option_id from responses where response_id = ?",
                 new Object[]{id},
