@@ -41,7 +41,7 @@ public class ResponseController {
     @GetMapping("/api/v1/responses/{id}")
     public ResponseTO viewResponseById(@PathVariable("id") String id) {
         return (ResponseTO) template.queryForObject(
-                "select * from responses where response_id = ?",
+                "select poll_id, response_id, option_id from responses where response_id = ?",
                 new Object[]{id},
                 new BeanPropertyRowMapper<>(ResponseTO.class)
         );
